@@ -32,11 +32,16 @@ hint - you should be looking at the stage key inside of the objects
 */
 
 //data - this will be the fifaData when you pass in your argument - this is an array
-function getFinals(/* code here */) {
+function getFinals(data) {
   //filter here - to filter for the stage of final
+  const finalsArray = data.filter(function(item) {
+    return item["Stage"] === "Final";
+  });
   //returning the array
-  /* code here */
+  return finalsArray;
 }
+
+console.log("task2:", getFinals(fifaData));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function called getYears to do the following: 
@@ -45,11 +50,16 @@ Use the higher-order function called getYears to do the following:
 3. Return an array called years containing all of the years in the getFinals data set*/
 
 //receive data (fifaData) / getFinalscb (callback)
-function getYears(/* code here */) {
+function getYears(data, getFinalscb) {
   //map through the finals cb to get all of the years (item.Year)
+  const years = getFinalscb(data).map(function(item) {
+    return item["Year"];
+  });
+  return years;
   //return the array
-  /* code here */
 }
+//derp... when using a callback as an argument don't invoke it
+console.log("task3:", getYears(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  
@@ -59,10 +69,20 @@ Use the higher-order function getWinners to do the following:
 4. Returns the names of all winning countries in an array called `winners` */
 
 //receive 2 parameters data (fifaData) / getFinalscb
-function getWinners(/* code here */) {
+function getWinners(data, getFinalscb) {
   //want an array of winners
-  /* code here */
+  //set up conditionals to create array of winning countries
+  const winners = getFinalscb(data).map(function(item) {
+    if (item["Home Team Goals"] > item["Away Team Goals"]) {
+      return item["Home Team Name"];
+    } else {
+      return item["Away Team Name"];
+    }
+  });
+  return winners;
 }
+
+console.log("task4:", getWinners(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
