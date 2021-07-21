@@ -129,9 +129,20 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
-  /* code here */
+function getAverageGoals(getFinalscb) {
+  //create sub array for the accumulated home team goals
+  const homeGoals = getFinalscb.reduce(function(acc, item) {
+    return acc + item["Home Team Goals"];
+  }, 0);
+  const awayGoals = getFinalscb.reduce(function(acc, item) {
+    return acc + item["Away Team Goals"];
+  }, 0);
+
+  //return the average to the second decimal place
+  return ((homeGoals + awayGoals) / getFinalscb.length).toFixed(2);
 }
+
+console.log("task6:", getAverageGoals(getFinals(fifaData)));
 
 /// 🥅 STRETCH 🥅 ///
 
