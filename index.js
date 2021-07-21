@@ -81,7 +81,7 @@ function getWinners(data, getFinalscb) {
   });
   return winners;
 }
-
+//yeeet
 console.log("task4:", getWinners(fifaData, getFinals));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -96,9 +96,26 @@ hint: the strings returned need to exactly match the string in step 4.
 
 //probably use map here
 
-function getWinnersByYear(/* code here */) {
-  /* code here */
+console.log(
+  "test:",
+  getWinners(fifaData, getFinals),
+  getYears(fifaData, getFinals)
+);
+
+function getWinnersByYear(data, getYearscb, getWinnerscb) {
+  //create an array to return containing the string we want
+  const winnersByYear = [];
+  for (let i = 0; i < getYearscb(data, getFinals).length; i++) {
+    winnersByYear.push(
+      `In ${getYearscb(data, getFinals)[i]}, ${
+        getWinnerscb(data, getFinals)[i]
+      } won the world cup!`
+    );
+  }
+  return winnersByYear;
 }
+
+console.log("task5:", getWinnersByYear(fifaData, getYears, getWinners));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function getAverageGoals to do the following: 
