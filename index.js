@@ -103,16 +103,23 @@ console.log(
 );
 
 function getWinnersByYear(data, getYearscb, getWinnerscb) {
-  //create an array to return containing the string we want
-  const winnersByYear = [];
-  for (let i = 0; i < getYearscb(data, getFinals).length; i++) {
-    winnersByYear.push(
-      `In ${getYearscb(data, getFinals)[i]}, ${
-        getWinnerscb(data, getFinals)[i]
-      } won the world cup!`
-    );
-  }
-  return winnersByYear;
+  // //create an array to return containing the string we want
+  // const winnersByYear = [];
+  // for (let i = 0; i < getYearscb(data, getFinals).length; i++) {
+  //   winnersByYear.push(
+  //     `In ${getYearscb(data, getFinals)[i]}, ${
+  //       getWinnerscb(data, getFinals)[i]
+  //     } won the world cup!`
+  //   );
+  // }
+  // return winnersByYear;
+
+  const winners = getWinnerscb(data, getFinals);
+  const years = getYearscb(data, getFinals);
+
+  return winners.map(
+    (item, index) => `In ${years[index]}, ${item} won the world cup!`
+  );
 }
 
 console.log("task5:", getWinnersByYear(fifaData, getYears, getWinners));
